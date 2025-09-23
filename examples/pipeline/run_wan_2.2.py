@@ -1,158 +1,150 @@
 import os
 import sys
+import tempfile
+from typing import Optional
+
+import gradio as gr
+import torch
+from diffusers import AutoencoderKLWan, UniPCMultistepScheduler, WanImageToVideoPipeline
+from diffusers.utils import export_to_video
+from transformers import CLIPVisionModel
 
 sys.path.append("..")
 
-import time
-import torch
-import diffusers
-from diffusers import WanPipeline, AutoencoderKLWan, WanTransformer3DModel
-from diffusers.utils import export_to_video
-from diffusers.schedulers.scheduling_unipc_multistep import (
-    UniPCMultistepScheduler,
-)
-from utils import get_args, GiB, strify, cachify
-import cache_dit
+from utils import get_args, cachify
+
+
+MODEL_ID = os.environ.get("WAN_2_1_DIR", "FastVideo/FastWan2.2-TI2V-5B-FullAttn-Diffusers")
+HEIGHT, WIDTH = 696, 376
+DEFAULT_STEPS = 50
+DEFAULT_FRAMES = 81
+GUIDANCE = 5.0
 
 
 args = get_args()
 print(args)
 
 
-height, width = 480, 832
-pipe = WanPipeline.from_pretrained(
-    os.environ.get(
-        "WAN_2_2_DIR",
-        "Wan-AI/Wan2.2-T2V-A14B-Diffusers",
-    ),
-    torch_dtype=torch.bfloat16,
-    # https://huggingface.co/docs/diffusers/main/en/tutorials/inference_with_big_models#device-placement
-    device_map=(
-        "balanced" if (torch.cuda.device_count() > 1 and GiB() <= 48) else None
-    ),
+def _select_device() -> str:
+    return "cuda" if torch.cuda.is_available() else "cpu"
+
+
+def _load_pipeline(device: str) -> WanImageToVideoPipeline:
+    dtype = torch.bfloat16 if device == "cuda" else torch.float32
+
+    vae = AutoencoderKLWan.from_pretrained(
+        MODEL_ID,
+        subfolder="vae",
+        torch_dtype=torch.float32,
+    ).to(device)
+
+    image_encoder = CLIPVisionModel.from_pretrained(
+        MODEL_ID,
+        subfolder="image_encoder",
+        torch_dtype=torch.float32,
+    ).to(device)
+
+    pipe = WanImageToVideoPipeline.from_pretrained(
+        MODEL_ID,
+        vae=vae,
+        image_encoder=image_encoder,
+        torch_dtype=dtype,
+    )
+
+    if pipe.scheduler is not None:
+        pipe.scheduler = UniPCMultistepScheduler.from_config(
+            pipe.scheduler.config,
+            flow_shift=3.0 if HEIGHT == 480 else 5.0,
+        )
+
+    if args.cache:
+        if not hasattr(pipe, "transformer") or not hasattr(pipe, "transformer_2"):
+            raise AttributeError("Wan pipeline is missing expected transformer modules for caching.")
+        from cache_dit import (
+            ForwardPattern,
+            BlockAdapter,
+            ParamsModifier,
+            BasicCacheConfig,
+        )
+
+        cachify(
+            args,
+            BlockAdapter(
+                pipe=pipe,
+                transformer=[pipe.transformer, pipe.transformer_2],
+                blocks=[pipe.transformer.blocks, pipe.transformer_2.blocks],
+                forward_pattern=[ForwardPattern.Pattern_2, ForwardPattern.Pattern_2],
+                params_modifiers=[
+                    ParamsModifier(
+                        cache_config=BasicCacheConfig(
+                            max_warmup_steps=4,
+                            max_cached_steps=8,
+                        ),
+                    ),
+                    ParamsModifier(
+                        cache_config=BasicCacheConfig(
+                            max_warmup_steps=2,
+                            max_cached_steps=20,
+                        ),
+                    ),
+                ],
+                has_separate_cfg=True,
+            ),
+        )
+
+    return pipe.to(device)
+
+
+DEVICE = _select_device()
+PIPELINE = _load_pipeline(DEVICE)
+
+
+def generate(
+    image,
+    prompt: str,
+    steps: int,
+    frames: int,
+) -> str:
+    if image is None:
+        raise gr.Error("Please upload an image.")
+
+    generator: Optional[torch.Generator]
+    if DEVICE == "cuda":
+        generator = torch.Generator(device="cuda").manual_seed(torch.randint(0, 2**31 - 1, (1,)).item())
+    else:
+        generator = torch.Generator().manual_seed(torch.randint(0, 2**31 - 1, (1,)).item())
+
+    result = PIPELINE(
+        image=image.convert("RGB"),
+        prompt=prompt or None,
+        height=HEIGHT,
+        width=WIDTH,
+        num_inference_steps=steps,
+        num_frames=frames,
+        guidance_scale=GUIDANCE,
+        generator=generator,
+    )
+
+    frames_np = result.frames[0]
+    tmpdir = tempfile.mkdtemp(prefix="wan2_2_")
+    video_path = os.path.join(tmpdir, "wan2_2.mp4")
+    export_to_video(frames_np, video_path, fps=16)
+    return video_path
+
+
+demo = gr.Interface(
+    fn=generate,
+    inputs=[
+        gr.Image(type="pil", label="Input Image"),
+        gr.Textbox(lines=3, placeholder="Optional prompt", label="Prompt"),
+        gr.Slider(10, 80, value=DEFAULT_STEPS, step=1, label="Denoising Steps"),
+        gr.Slider(16, 121, value=DEFAULT_FRAMES, step=1, label="Frames"),
+    ],
+    outputs=gr.Video(label="Generated Video"),
+    title="Wan 2.2 I2V",
+    description="Minimal Gradio wrapper for Wan 2.2 image-to-video generation.",
 )
 
-# flow shift should be 3.0 for 480p images, 5.0 for 720p images
-if hasattr(pipe, "scheduler") and pipe.scheduler is not None:
-    # Use the UniPCMultistepScheduler with the specified flow shift
-    flow_shift = 3.0 if height == 480 else 5.0
-    pipe.scheduler = UniPCMultistepScheduler.from_config(
-        pipe.scheduler.config,
-        flow_shift=flow_shift,
-    )
 
-
-if args.cache:
-    from cache_dit import (
-        ForwardPattern,
-        BlockAdapter,
-        ParamsModifier,
-        BasicCacheConfig,
-    )
-
-    cachify(
-        args,
-        BlockAdapter(
-            pipe=pipe,
-            transformer=[
-                pipe.transformer,
-                pipe.transformer_2,
-            ],
-            blocks=[
-                pipe.transformer.blocks,
-                pipe.transformer_2.blocks,
-            ],
-            forward_pattern=[
-                ForwardPattern.Pattern_2,
-                ForwardPattern.Pattern_2,
-            ],
-            params_modifiers=[
-                # high-noise transformer only have 30% steps
-                ParamsModifier(
-                    cache_config=BasicCacheConfig(
-                        max_warmup_steps=4,
-                        max_cached_steps=8,
-                    ),
-                ),
-                ParamsModifier(
-                    cache_config=BasicCacheConfig(
-                        max_warmup_steps=2,
-                        max_cached_steps=20,
-                    ),
-                ),
-            ],
-            has_separate_cfg=True,
-        ),
-    )
-
-# Wan currently requires installing diffusers from source
-assert isinstance(pipe.vae, AutoencoderKLWan)  # enable type check for IDE
-if diffusers.__version__ >= "0.34.0":
-    pipe.vae.enable_tiling()
-    pipe.vae.enable_slicing()
-else:
-    print(
-        "Wan pipeline requires diffusers version >= 0.34.0 "
-        "for vae tiling and slicing, please install diffusers "
-        "from source."
-    )
-
-assert isinstance(pipe.transformer, WanTransformer3DModel)
-assert isinstance(pipe.transformer_2, WanTransformer3DModel)
-
-if args.quantize:
-    assert isinstance(args.quantize_type, str)
-    if args.quantize_type.endswith("wo"):  # weight only
-        pipe.transformer = cache_dit.quantize(
-            pipe.transformer,
-            quant_type=args.quantize_type,
-        )
-    # We only apply activation quantization (default: FP8 DQ)
-    # for low-noise transformer to avoid non-trivial precision
-    # downgrade.
-    pipe.transformer_2 = cache_dit.quantize(
-        pipe.transformer_2,
-        quant_type=args.quantize_type,
-    )
-
-if args.compile or args.quantize:
-    cache_dit.set_compile_configs()
-    pipe.transformer.compile_repeated_blocks(fullgraph=True)
-    pipe.transformer_2.compile_repeated_blocks(fullgraph=True)
-
-    # warmup
-    video = pipe(
-        prompt=(
-            "An astronaut dancing vigorously on the moon with earth "
-            "flying past in the background, hyperrealistic"
-        ),
-        height=height,
-        width=width,
-        num_frames=81,
-        num_inference_steps=50,
-        generator=torch.Generator("cpu").manual_seed(0),
-    ).frames[0]
-
-
-start = time.time()
-video = pipe(
-    prompt=(
-        "An astronaut dancing vigorously on the moon with earth "
-        "flying past in the background, hyperrealistic"
-    ),
-    negative_prompt="",
-    height=height,
-    width=width,
-    num_frames=81,
-    num_inference_steps=50,
-    generator=torch.Generator("cpu").manual_seed(0),
-).frames[0]
-end = time.time()
-
-cache_dit.summary(pipe, details=True)
-
-time_cost = end - start
-save_path = f"wan2.2.{strify(args, pipe)}.mp4"
-print(f"Time cost: {time_cost:.2f}s")
-print(f"Saving video to {save_path}")
-export_to_video(video, save_path, fps=16)
+if __name__ == "__main__":
+    demo.launch()
