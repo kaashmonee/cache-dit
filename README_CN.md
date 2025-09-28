@@ -1,38 +1,58 @@
-<a href="./README.md">📚English</a> | <a href="./README_CN.md">📚中文阅读</a>
+<a href="./README.md">📚English</a> | <a href="./README_CN.md">📚中文阅读 </a> 
 
 <div align="center">
   <img src=https://github.com/vipshop/cache-dit/raw/main/assets/cache-dit-logo.png height="120">
 
-<p align="center">
+  <p align="center">
     一个专门为🤗Diffusers而开发的，<b>统一</b>、灵活以及无需训练的<b>缓存加速框架</b> <br>
     ♥️ <b>一行代码</b>实现DiT缓存加速 ~ ♥️
   </p>
   <div align='center'>
       <img src=https://img.shields.io/badge/Language-Python-brightgreen.svg >
-      <img src=https://img.shields.io/badge/PRs-welcome-9cf.svg >
+      <img src=https://img.shields.io/badge/PRs-welcome-blue.svg >
       <img src=https://img.shields.io/badge/PyPI-pass-brightgreen.svg >
       <img src=https://static.pepy.tech/badge/cache-dit >
       <img src=https://img.shields.io/github/stars/vipshop/cache-dit.svg?style=dark >
-      <img src=https://img.shields.io/badge/Python-3.10|3.11|3.12-9cf.svg >
- </div>
+      <img src=https://img.shields.io/badge/Release-v1.0-brightgreen.svg >
+  </div>
   <p align="center">
-    <b><a href="#unified">📚Unified Cache APIs</a></b> | <a href="#forward-pattern-matching">📚Forward Pattern Matching</a> | <a href="./docs/User_Guide.md">📚Automatic Block Adapter</a><br>
-    <a href="./docs/User_Guide.md">📚Hybrid Forward Pattern</a> | <a href="#dbcache">📚DBCache</a> | <a href="./docs/User_Guide.md">📚TaylorSeer Calibrator</a> | <a href="./docs/User_Guide.md">📚Cache CFG</a><br>
-    <a href="#benchmarks">📚Text2Image DrawBench</a> | <a href="#benchmarks">📚Text2Image Distillation DrawBench</a>
-  </p>
-  <p align="center">
-    🎉目前, <b>cache-dit</b> 支持Diffusers中几乎<b>所有</b>DiT</b>模型🎉<br>
-    🔥<a href="#supported">Qwen-Image</a> | <a href="#supported">FLUX.1</a> | <a href="#supported">Qwen-Image-Lightning</a> | <a href="#supported"> Wan 2.1 </a> | <a href="#supported"> Wan 2.2 </a>🔥<br>
-    🔥<a href="#supported">HunyuanImage-2.1</a> | <a href="#supported">HunyuanVideo</a> | <a href="#supported">HunyuanDiT</a> | <a href="#supported">HiDream</a> | <a href="#supported">AuraFlow</a>🔥<br>
-    🔥<a href="#supported">CogView3Plus</a> | <a href="#supported">CogView4</a> | <a href="#supported">LTXVideo</a> | <a href="#supported">CogVideoX</a> | <a href="#supported">CogVideoX 1.5</a> | <a href="#supported">ConsisID</a>🔥<br>
-    🔥<a href="#supported">Cosmos</a> | <a href="#supported">SkyReelsV2</a> | <a href="#supported">VisualCloze</a> | <a href="#supported">OmniGen 1/2</a> | <a href="#supported">Lumina 1/2</a> | <a href="#supported">PixArt</a>🔥<br>
-    🔥<a href="#supported">Chroma</a> | <a href="#supported">Sana</a> | <a href="#supported">Allegro</a> | <a href="#supported">Mochi</a> | <a href="#supported">SD 3/3.5</a> | <a href="#supported">Amused</a> | <a href="#supported"> ... </a> | <a href="#supported">DiT-XL</a>🔥
+      🎉目前, <b>cache-dit</b> 支持Diffusers中几乎<b>所有</b>DiT</b>模型🎉<br>
+      🔥<a href="./examples/">Qwen-Image</a> | <a href="./examples/">FLUX.1</a> | <a href="./examples/">Qwen-Image-Lightning</a> | <a href="./examples/"> Wan 2.1 </a> | <a href="./examples/"> Wan 2.2 </a>🔥<br>
+      🔥<a href="./examples/">HunyuanImage-2.1</a> | <a href="./examples/">HunyuanVideo</a> | <a href="./examples/">HunyuanDiT</a> | <a href="./examples/">HiDream</a> | <a href="./examples/">AuraFlow</a>🔥<br>
+      🔥<a href="./examples/">CogView3Plus</a> | <a href="./examples/">CogView4</a> | <a href="./examples/">LTXVideo</a> | <a href="./examples/">CogVideoX</a> | <a href="./examples/">CogVideoX 1.5</a> | <a href="./examples/">ConsisID</a>🔥<br>
+      🔥<a href="./examples/">Cosmos</a> | <a href="./examples/">SkyReelsV2</a> | <a href="./examples/">VisualCloze</a> | <a href="./examples/">OmniGen 1/2</a> | <a href="./examples/">Lumina 1/2</a> | <a href="./examples/">PixArt</a>🔥<br>
+      🔥<a href="./examples/">Chroma</a> | <a href="./examples/">Sana</a> | <a href="./examples/">Allegro</a> | <a href="./examples/">Mochi</a> | <a href="./examples/">SD 3/3.5</a> | <a href="./examples/">Amused</a> | <a href="./examples/"> ... </a> | <a href="./examples/">DiT-XL</a>🔥
   </p>
 </div>
 
+## 🔥重点 <a href="https://huggingface.co/docs/diffusers/main/en/optimization/cache_dit"><img src=https://img.shields.io/badge/🤗Diffusers-ecosystem-yellow.svg ></a>
 
-<div align='center'>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/gifs/wan2.2.C0_Q0_NONE.gif width=124px>
+我们非常兴奋地宣布，cache-dit 的**首个 API 稳定版本 (v1.0.0)**终于正式发布！
+
+**[cache-dit](https://github.com/vipshop/cache-dit)** 是一款为 🤗 Diffusers 打造的**统一化（Unified）、高灵活（Flexible）、无需训练（Training-free）** 的缓存加速框架，仅需**一行代码**即可实现缓存加速。核心特性包括**统一缓存接口（Unified Cache APIs）**、**前向模式匹配（Forward Pattern Matching）**、**自动块适配（Automatic Block Adapter）**、**混合前向模式（Hybrid Forward Pattern）**、**DBCache 机制**、**TaylorSeer 校准器（TaylorSeer Calibrator）** 及**Cache CFG**。
+
+```bash
+pip3 install -U cache-dit # pip3 install git+https://github.com/vipshop/cache-dit.git
+```
+
+您可以从 PyPI 安装 cache-dit 的稳定版本，或从 GitHub 安装最新的开发版本。然后，只需一行代码即可体验 ♥️ 缓存加速～♥️
+
+```python
+>>> import cache_dit
+>>> from diffusers import DiffusionPipeline
+>>> pipe = DiffusionPipeline.from_pretrained("Qwen/Qwen-Image") # Can be any diffusion pipeline
+>>> cache_dit.enable_cache(pipe) # One-line code with default cache options.
+>>> output = pipe(...) # Just call the pipe as normal.
+>>> stats = cache_dit.summary(pipe) # Then, get the summary of cache acceleration stats.
+>>> cache_dit.disable_cache(pipe) # Disable cache and run original pipe.
+```
+
+<details align='center'>
+
+<summary>点击这里查看更多Image/Video加速示例</summary>
+
+<div  align='center'>
+ <img src=https://github.com/vipshop/cache-dit/raw/main/assets/gifs/wan2.2.C0_Q0_NONE.gif width=124px>
   <img src=https://github.com/vipshop/cache-dit/raw/main/assets/gifs/wan2.2.C1_Q0_DBCACHE_F1B0_W2M8MC2_T1O2_R0.08.gif width=124px>
   <img src=https://github.com/vipshop/cache-dit/raw/main/assets/gifs/hunyuan_video.C0_L0_Q0_NONE.gif width=126px>
   <img src=https://github.com/vipshop/cache-dit/raw/main/assets/gifs/hunyuan_video.C0_L0_Q0_DBCACHE_F1B0_W8M0MC2_T0O2_R0.12_S27.gif width=126px>
@@ -51,16 +71,7 @@
   <img src=https://github.com/vipshop/cache-dit/raw/main/assets/qwen-image-edit.C0_L0_Q0_NONE.png width=125px>
   <img src=https://github.com/vipshop/cache-dit/raw/main/assets/qwen-image-edit.C0_L0_Q0_DBCACHE_F8B0_W8M0MC0_T0O2_R0.08_S18.png width=125px>
   <img src=https://github.com/vipshop/cache-dit/raw/main/assets/qwen-image-edit.C0_L0_Q0_DBCACHE_F1B0_W8M0MC2_T0O2_R0.12_S24.png width=125px>
-  <p><b>🔥Qwen-Image-Edit</b> | Input w/o Edit | Baseline | <a href="https://github.com/vipshop/cache-dit">+cache-dit</a>:1.6x↑🎉 | 1.9x↑🎉 
-  <br>♥️ Please consider to leave a <b>⭐️ Star</b> to support us ~ ♥️
-  </p>
-</div>
-
-<details align='center'>
-
-<summary>点击这里查看更多Image/Video加速示例</summary>
-
-<div  align='center'>
+  <p><b>🔥Qwen-Image-Edit</b> | Input w/o Edit | Baseline | <a href="https://github.com/vipshop/cache-dit">+cache-dit</a>:1.6x↑🎉 | 1.9x↑🎉 </p>
   <img src=https://github.com/vipshop/cache-dit/raw/main/assets/flux-kontext-cat.C0_L0_Q0_NONE.png width=100px>
   <img src=https://github.com/vipshop/cache-dit/raw/main/assets/flux-kontext.C0_L0_Q0_NONE.png width=100px>
   <img src=https://github.com/vipshop/cache-dit/raw/main/assets/flux-kontext.C0_L0_Q0_DBCACHE_F8B0_W8M0MC0_T0O2_R0.08_S10.png width=100px>
@@ -128,255 +139,18 @@
 </div>
 </details>
 
+### 📚核心特性
 
-## 📖目录
+- **全面支持 🤗 Diffusers**：值得注意的是，**[cache-dit](https://github.com/vipshop/cache-dit)** 目前已支持 Diffusers 中几乎**所有**基于 DiT（Transformer 扩散模型）的流水线，例如 Qwen-Image、FLUX.1、Qwen-Image-Lightning、Wan 2.1/2.2、HunyuanImage-2.1、HunyuanVideo、HunyuanDiT、HiDream、AuraFlow、CogView3Plus、CogView4、LTXVideo、CogVideoX/X 1.5、ConsisID、Cosmos、SkyReelsV2、VisualCloze、OmniGen 1/2、Lumina 1/2、PixArt、Chroma、Sana、Allegro、Mochi、SD 3/3.5、Amused 以及 DiT-XL 等。  
+- **极致易用**：在大多数场景下，仅需**♥️ 一行 ♥️** 代码即可启用：`cache_dit.enable_cache(...)`。调用该接口后，正常使用流水线即可享受加速。  
+- **轻松集成新模型**：统一缓存接口、前向模式匹配、自动块适配、混合前向模式及 Patch Functor 等特性，使其具备极强的功能性与灵活性。例如，我们实现了对 [HunyuanImage-2.1](https://github.com/Tencent-Hunyuan/HunyuanImage-2.1) 的 🎉 首日支持（Day 1 Support）——即便该模型当时尚未在 Diffusers 库中正式发布。  
+- **业界领先性能**：与 Δ-DiT、Chipmunk、FORA、DuCa、TaylorSeer、FoCa 等算法相比，在加速比低于 4 倍的场景下，cache-dit 的 DBCache 机制实现了最优精度。  
+- **支持 4/8 步蒸馏模型**：令人惊喜的是，cache-dit 的 DBCache 机制可适配极少量步数的蒸馏模型，而这是许多其他方法无法实现的。  
+- **兼容多种优化方案**：设计上可与 torch.compile、模型 CPU 卸载、顺序 CPU 卸载、分组卸载等优化方案无缝协同。  
+- **混合缓存加速**：目前已支持 **DBCache + 校准器** 混合方案（例如 DBCache + TaylorSeerCalibrator）。其中 DBCache 作为**指示器（Indicator）** 决定*何时（when）* 缓存，校准器则负责决定*如何（how）* 缓存。未来将支持更多主流缓存加速算法（如 FoCa 等）及更多基准测试，敬请期待更新！  
+- **🤗 Diffusers 生态集成**：🔥 **cache-dit** 已正式加入 🤗 Diffusers 社区生态，成为**首个**针对 DiT 的缓存加速框架！查看文档：**[Diffusers 官方文档](https://huggingface.co/docs/diffusers/main/en/optimization/cache_dit)**。 <a href="https://huggingface.co/docs/diffusers/main/en/optimization/cache_dit"><img src=https://img.shields.io/badge/🤗Diffusers-ecosystem-yellow.svg ></a>
 
-<div id="contents"></div>  
-
-- [⚙️安装依赖](#️installation)
-- [🔥快速开始](#quick-start)
-- [📚前向模式匹配](#forward-pattern-matching)
-- [⚡️双向对偶缓存](#dbcache)
-- [🔥泰勒展开校准器](#taylorseer)
-- [📚混合CFG缓存](#cfg)
-- [🔥性能数据](#benchmarks)
-- [🎉用户指引](#user-guide)
-- [©️引用我们](#citations)
-
-## ⚙️安装依赖
-
-<div id="installation"></div>
-
-您可以从PyPI上安装`cache-dit`的稳定版本：
-
-```bash
-pip3 install -U cache-dit
-```
-
-或者从github的源码进行安装：
-```bash
-pip3 install git+https://github.com/vipshop/cache-dit.git
-```
-
-## 🔥快速开始 
-
-<div id="unified"></div>  
-
-<div id="quick-start"></div>
-
-在大多数情况下，您只需调用 ♥️**一行**♥️ 代码，即 `cache_dit.enable_cache(...)`。调用该 API 后，您只需像往常一样调用管道（pipe）即可。其中，`pipe` 参数可以是 **任意** Diffusion Pipeline。示例可参考 [Qwen-Image](https://github.com/vipshop/cache-dit/blob/main/examples/pipeline/run_qwen_image.py)。
-
-```python
->>> import cache_dit
->>> from diffusers import DiffusionPipeline
->>> pipe = DiffusionPipeline.from_pretrained("Qwen/Qwen-Image") # Can be any diffusion pipeline
->>> cache_dit.enable_cache(pipe) # One-line code with default cache options.
->>> output = pipe(...) # Just call the pipe as normal.
->>> stats = cache_dit.summary(pipe) # Then, get the summary of cache acceleration stats.
->>> cache_dit.disable_cache(pipe) # Disable cache and run original pipe.
-```
-
-## 📚前向模式匹配 
-
-<div id="supported"></div>
-
-<div id="forward-pattern-matching"></div>  
-
-cache-dit 的工作原理是匹配如下所示的特定输入/输出模式。
-
-![](https://github.com/vipshop/cache-dit/raw/main/assets/patterns-v1.png)
-
-详情请查看 [🎉示例](https://github.com/vipshop/cache-dit/blob/main/examples/pipeline)。以下仅列出部分经过测试的模型。
-
-```python
->>> import cache_dit
->>> cache_dit.supported_pipelines()
-(30, ['Flux*', 'Mochi*', 'CogVideoX*', 'Wan*', 'HunyuanVideo*', 'QwenImage*', 'LTX*', 'Allegro*',
-'CogView3Plus*', 'CogView4*', 'Cosmos*', 'EasyAnimate*', 'SkyReelsV2*', 'StableDiffusion3*',
-'ConsisID*', 'DiT*', 'Amused*', 'Bria*', 'Lumina*', 'OmniGen*', 'PixArt*', 'Sana*', 'StableAudio*',
-'VisualCloze*', 'AuraFlow*', 'Chroma*', 'ShapE*', 'HiDream*', 'HunyuanDiT*', 'HunyuanDiTPAG*'])
-```
-
-<details>
-<summary> 点击展示所有支持的模型 </summary>  
-
-- [🚀HunyuanImage-2.1](https://github.com/vipshop/cache-dit/blob/main/examples)  
-- [🚀Qwen-Image-Lightning](https://github.com/vipshop/cache-dit/blob/main/examples)
-- [🚀Qwen-Image-Edit](https://github.com/vipshop/cache-dit/blob/main/examples)  
-- [🚀Qwen-Image](https://github.com/vipshop/cache-dit/blob/main/examples)  
-- [🚀FLUX.1-dev](https://github.com/vipshop/cache-dit/blob/main/examples)  
-- [🚀FLUX.1-Fill-dev](https://github.com/vipshop/cache-dit/blob/main/examples)  
-- [🚀FLUX.1-Kontext-dev](https://github.com/vipshop/cache-dit/blob/main/examples)
-- [🚀CogView4](https://github.com/vipshop/cache-dit/blob/main/examples)
-- [🚀Wan2.2-T2V](https://github.com/vipshop/cache-dit/blob/main/examples)
-- [🚀HunyuanVideo](https://github.com/vipshop/cache-dit/blob/main/examples)
-- [🚀HiDream-I1-Full](https://github.com/vipshop/cache-dit/blob/main/examples)
-- [🚀HunyuanDiT](https://github.com/vipshop/cache-dit/blob/main/examples)
-- [🚀Wan2.1-T2V](https://github.com/vipshop/cache-dit/blob/main/examples)
-- [🚀Wan2.1-FLF2V](https://github.com/vipshop/cache-dit/blob/main/examples)
-- [🚀SkyReelsV2](https://github.com/vipshop/cache-dit/blob/main/examples)  
-- [🚀Chroma1-HD](https://github.com/vipshop/cache-dit/blob/main/examples)  
-- [🚀CogVideoX1.5](https://github.com/vipshop/cache-dit/blob/main/examples)
-- [🚀CogView3-Plus](https://github.com/vipshop/cache-dit/blob/main/examples)
-- [🚀CogVideoX](https://github.com/vipshop/cache-dit/blob/main/examples)
-- [🚀VisualCloze](https://github.com/vipshop/cache-dit/blob/main/examples)  
-- [🚀LTXVideo](https://github.com/vipshop/cache-dit/blob/main/examples)  
-- [🚀OmniGen](https://github.com/vipshop/cache-dit/blob/main/examples)  
-- [🚀Lumina2](https://github.com/vipshop/cache-dit/blob/main/examples)  
-- [🚀mochi-1-preview](https://github.com/vipshop/cache-dit/blob/main/examples)
-- [🚀AuraFlow-v0.3](https://github.com/vipshop/cache-dit/blob/main/examples)
-- [🚀PixArt-Alpha](https://github.com/vipshop/cache-dit/blob/main/examples)
-- [🚀PixArt-Sigma](https://github.com/vipshop/cache-dit/blob/main/examples)
-- [🚀NVIDIA Sana](https://github.com/vipshop/cache-dit/blob/main/examples)
-- [🚀SD-3/3.5](https://github.com/vipshop/cache-dit/blob/main/examples)
-- [🚀ConsisID](https://github.com/vipshop/cache-dit/blob/main/examples)
-- [🚀Allegro](https://github.com/vipshop/cache-dit/blob/main/examples)
-- [🚀Amused](https://github.com/vipshop/cache-dit/blob/main/examples)
-- [🚀DiT-XL](https://github.com/vipshop/cache-dit/blob/main/examples)
-- ...
-
-</details>
-
-## ⚡️双向对偶缓存  
-
-<div id="dbcache"></div>
-
-![](https://github.com/vipshop/cache-dit/raw/main/assets/dbcache-v1.png)
-
-**DBCache**：面向Diffusion Transformers的**双向对偶缓存（Dual Block Caching）** 技术。在DBCache中可自定义计算块的不同配置（如**F8B12**等），实现性能与精度之间的平衡权衡。此外，它完全可实现**无训练（training-free）** 部署。查阅 [DBCache](https://github.com/vipshop/cache-dit/blob/main/docs/DBCache.md) 和 [User Guide](https://github.com/vipshop/cache-dit/blob/main/docs/User_Guide.md#dbcache) 文档以获取更多设计细节。
-
-```python
-# Default options, F8B0, 8 warmup steps, and unlimited cached 
-# steps for good balance between performance and precision
-cache_dit.enable_cache(pipe_or_adapter)
-
-# Custom options, F8B8, higher precision
-from cache_dit import BasicCacheConfig
-
-cache_dit.enable_cache(
-    pipe_or_adapter,
-    cache_config=BasicCacheConfig(
-        max_warmup_steps=8,  # steps do not cache
-        max_cached_steps=-1, # -1 means no limit
-        Fn_compute_blocks=8, # Fn, F8, etc.
-        Bn_compute_blocks=8, # Bn, B8, etc.
-        residual_diff_threshold=0.12,
-    ),
-)
-```  
-
-
-## 🔥泰勒展开校准器
-
-<div id="taylorseer"></div>
-
-[TaylorSeers](https://huggingface.co/papers/2503.06923) 算法可在缓存步长较大的场景下进一步提升 DBCache 的精度（即混合 TaylorSeer + DBCache 方案）；由于在时间步间隔较大时，扩散模型中的特征相似度会大幅下降，严重影响生成质量，TaylorSeers 遂采用微分方法近似特征的高阶导数，并通过泰勒级数展开来预测未来时间步的特征，且 CacheDiT 中实现的 TaylorSeers 支持隐藏状态和残差两种缓存类型，F_pred 既可以是残差缓存，也可以是隐藏状态缓存。
-
-```python
-from cache_dit import BasicCacheConfig, TaylorSeerCalibratorConfig
-
-cache_dit.enable_cache(
-    pipe_or_adapter,
-    # Basic DBCache w/ FnBn configurations
-    cache_config=BasicCacheConfig(
-        max_warmup_steps=8,  # steps do not cache
-        max_cached_steps=-1, # -1 means no limit
-        Fn_compute_blocks=8, # Fn, F8, etc.
-        Bn_compute_blocks=8, # Bn, B8, etc.
-        residual_diff_threshold=0.12,
-    ),
-    # Then, you can use the TaylorSeer Calibrator to approximate 
-    # the values in cached steps, taylorseer_order default is 1.
-    calibrator_config=TaylorSeerCalibratorConfig(
-        taylorseer_order=1,
-    ),
-)
-``` 
-
-> [!TIP]  
-> 若使用 TaylorSeer 作为校准器来近似隐藏状态，可将 DBCache 的 `Bn_compute_blocks` 参数设为 `0`；DBCache 的 `Bn_compute_blocks` 本身也可充当校准器，因此你可选择 `Bn_compute_blocks` > 0 的模式，或选择 TaylorSeer。我们建议采用 TaylorSeer + DBCache FnB0 的配置方案。
-
-## 📚混合CFG缓存
-
-<div id="cfg"></div>
-
-cache-dit 支持对 CFG（classifier-free guidance）的缓存功能。对于将 CFG 与非 CFG 融合在单个前向传播步骤中的模型，或在前向传播步骤中不包含 CFG（classifier-free guidance）的模型，请将 `enable_separate_cfg` 参数设置为 `False（默认值，或 None）`；否则，请将其设置为 `True`。
-
-```python
-from cache_dit import BasicCacheConfig
-
-cache_dit.enable_cache(
-    pipe_or_adapter, 
-    cache_config=BasicCacheConfig(
-        ...,
-        # For example, set it as True for Wan 2.1/Qwen-Image 
-        # and set it as False for FLUX.1, HunyuanVideo, CogVideoX, etc.
-        enable_separate_cfg=True,
-    ),
-)
-```
-
-## 🔥性能数据
-
-<div id="benchmarks"></div>
-
-**cache-dit: DBCache** 与 Δ-DiT、Chipmunk、FORA、DuCa、TaylorSeer、FoCa 等算法的对比情况如下。在加速比低于 **3倍（3x）** 的对比场景中，cache-dit 实现了最佳精度。值得注意的是，在极少量步数的蒸馏模型中，cache-dit: DBCache 仍能正常工作。完整的基准测试数据请参考 [📚Benchmarks](https://github.com/vipshop/cache-dit/blob/main/bench/)。
-
-| Method | TFLOPs(↓) | SpeedUp(↑) | ImageReward(↑) | Clip Score(↑) |
-| --- | --- | --- | --- | --- |
-| [**FLUX.1**-dev]: 50 steps | 3726.87 | 1.00× | 0.9898 | 32.404 |
-| [**FLUX.1**-dev]: 60% steps | 2231.70 | 1.67× | 0.9663 | 32.312 |
-| Δ-DiT(N=2) | 2480.01 | 1.50× | 0.9444 | 32.273 |
-| Δ-DiT(N=3) | 1686.76 | 2.21× | 0.8721 | 32.102 |
-| [**FLUX.1**-dev]: 34% steps | 1264.63 | 3.13× | 0.9453 | 32.114 |
-| Chipmunk | 1505.87 | 2.47× | 0.9936 | 32.776 |
-| FORA(N=3) | 1320.07 | 2.82× | 0.9776 | 32.266 |
-| **[DBCache(F=4,B=0,W=4,MC=4)](https://github.com/vipshop/cache-dit)** | 1400.08 | **2.66×** | **1.0065** | 32.838 |
-| **[DBCache+TaylorSeer(F=1,B=0,O=1)](https://github.com/vipshop/cache-dit)** | 1153.05 | **3.23×** | **1.0221** | 32.819 |
-| DuCa(N=5) | 978.76 | 3.80× | 0.9955 | 32.241 |
-| TaylorSeer(N=4,O=2) | 1042.27 | 3.57× | 0.9857 | 32.413 |
-| **[DBCache(F=1,B=0,W=4,MC=6)](https://github.com/vipshop/cache-dit)** | 944.75 | **3.94×** | 0.9997 | 32.849 |
-| **[DBCache+TaylorSeer(F=1,B=0,O=1)](https://github.com/vipshop/cache-dit)** | 944.75 | **3.94×** | **1.0107** | 32.865 |
-| **[FoCa(N=5): arxiv.2508.16211](https://arxiv.org/pdf/2508.16211)** | 893.54 | **4.16×** | **1.0029** | **32.948** |
-
-<details>
-<summary> 点击展开完整的对比 </summary>  
-
-| Method | TFLOPs(↓) | SpeedUp(↑) | ImageReward(↑) | Clip Score(↑) |
-| --- | --- | --- | --- | --- |
-| [**FLUX.1**-dev]: 50 steps | 3726.87 | 1.00× | 0.9898 | 32.404 |
-| [**FLUX.1**-dev]: 60% steps | 2231.70 | 1.67× | 0.9663 | 32.312 |
-| Δ-DiT(N=2) | 2480.01 | 1.50× | 0.9444 | 32.273 |
-| Δ-DiT(N=3) | 1686.76 | 2.21× | 0.8721 | 32.102 |
-| [**FLUX.1**-dev]: 34% steps | 1264.63 | 3.13× | 0.9453 | 32.114 |
-| Chipmunk | 1505.87 | 2.47× | 0.9936 | 32.776 |
-| FORA(N=3) | 1320.07 | 2.82× | 0.9776 | 32.266 |
-| **[DBCache(F=4,B=0,W=4,MC=4)](https://github.com/vipshop/cache-dit)** | 1400.08 | **2.66×** | **1.0065** | 32.838 |
-| DuCa(N=5) | 978.76 | 3.80× | 0.9955 | 32.241 |
-| TaylorSeer(N=4,O=2) | 1042.27 | 3.57× | 0.9857 | 32.413 |
-| **[DBCache+TaylorSeer(F=1,B=0,O=1)](https://github.com/vipshop/cache-dit)** | 1153.05 | **3.23×** | **1.0221** | 32.819 |
-| **[DBCache(F=1,B=0,W=4,MC=6)](https://github.com/vipshop/cache-dit)** | 944.75 | **3.94×** | 0.9997 | 32.849 |
-| **[DBCache+TaylorSeer(F=1,B=0,O=1)](https://github.com/vipshop/cache-dit)** | 944.75 | **3.94×** | **1.0107** | 32.865 |
-| **[FoCa(N=5): arxiv.2508.16211](https://arxiv.org/pdf/2508.16211)** | 893.54 | **4.16×** | **1.0029** | **32.948** |
-| [**FLUX.1**-dev]: 22% steps | 818.29 | 4.55× | 0.8183 | 31.772 |
-| FORA(N=4) | 967.91 | 3.84× | 0.9730 | 32.142 |
-| ToCa(N=8) | 784.54 | 4.74× | 0.9451 | 31.993 |
-| DuCa(N=7) | 760.14 | 4.89× | 0.9757 | 32.066 |
-| TeaCache(l=0.8) | 892.35 | 4.17× | 0.8683 | 31.704 |
-| **[DBCache(F=4,B=0,W=4,MC=10)](https://github.com/vipshop/cache-dit)** | 816.65 | 4.56x | 0.8245 | 32.191 |
-| TaylorSeer(N=5,O=2) | 893.54 | 4.16× | 0.9768 | 32.467 |
-| **[FoCa(N=7): arxiv.2508.16211](https://arxiv.org/pdf/2508.16211)** | 670.44 | **5.54×** | **0.9891** | **32.920** |
-| FORA(N=7) | 670.14 | 5.55× | 0.7418 | 31.519 |
-| ToCa(N=12) | 644.70 | 5.77× | 0.7155 | 31.808 |
-| DuCa(N=10) | 606.91 | 6.13× | 0.8382 | 31.759 |
-| TeaCache(l=1.2) | 669.27 | 5.56× | 0.7394 | 31.704 |
-| **[DBCache(F=1,B=0,W=4,MC=10)](https://github.com/vipshop/cache-dit)** | 651.90 | **5.72x** | 0.8796 | **32.318** |
-| TaylorSeer(N=7,O=2) | 670.44 | 5.54× | 0.9128 | 32.128 |
-| **[FoCa(N=8): arxiv.2508.16211](https://arxiv.org/pdf/2508.16211)** | 596.07 | **6.24×** | **0.9502** | **32.706** |
-
-注：除 DBCache 外，其他性能数据均引用自论文 [FoCa, arxiv.2508.16211](https://arxiv.org/pdf/2508.16211)。
-
-</details>
+![image-reward-bench](https://github.com/vipshop/cache-dit/raw/main/assets/image-reward-bench.png)
 
 ## 🎉用户指引
 
@@ -422,6 +196,10 @@ cache_dit.enable_cache(
 <div id="Acknowledgements"></div>
 
 **cache-dit** 代码库基于 FBCache 开发而成。但随着时间推移，其代码库已发生较大差异，且 **cache-dit** 的 API 不再与 FBCache 兼容。
+
+## ©️特别鸣谢
+
+本项目的顺利推进与落地，离不开 唯品会-计算机视觉算法团队 的鼎力支持。特别鸣谢该团队在文档建设、功能测试及生产级应用落地等关键环节提供的专业指导与全面协助。
 
 ## ©️引用我们
 

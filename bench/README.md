@@ -1,5 +1,8 @@
 # 🤖Benchmarks
 
+![](https://github.com/vipshop/cache-dit/raw/main/assets/image-reward-bench.png)
+![](https://github.com/vipshop/cache-dit/raw/main/assets/clip-score-bench.png)
+
 ## 📖Contents
 
 - [📚DrawBench](#benchmark-flux)
@@ -24,7 +27,6 @@ Comparisons between different FnBn compute block configurations show that **more
   - **R**: residual diff threshold, range [0, 1.0)
   - **Latency(s)**: Recorded compute time (eager mode) that **w/o** other optimizations
   - **TFLOPs**: Recorded compute FLOPs using [calflops](https://github.com/chengzegang/calculate-flops.pytorch.git)'s [calculate_flops](./utils.py) API.
-
 
 > [!Note]   
 > Among all the accuracy indicators, the overall accuracy has slightly improved after using TaylorSeer.
@@ -146,17 +148,23 @@ cd ..
 # NOTE: The reported benchmark was run on NVIDIA L20 device.
 
 # FLUX.1-dev DrawBench w/ low speedup ratio
-export CUDA_VISIBLE_DEVICES=0 && nohup bash bench.sh default > log/cache_dit_bench_default.log 2>&1 &
-export CUDA_VISIBLE_DEVICES=1 && nohup bash bench.sh taylorseer > log/cache_dit_bench_taylorseer.log 2>&1 &
+export CUDA_VISIBLE_DEVICES=0
+nohup bash bench.sh default > log/cache_dit_bench_default.log 2>&1 &
+export CUDA_VISIBLE_DEVICES=1
+nohup bash bench.sh taylorseer > log/cache_dit_bench_taylorseer.log 2>&1 &
 bash ./metrics.sh
 
 # FLUX.1-dev DrawBench w/ high speedup ratio
-export CUDA_VISIBLE_DEVICES=0 && nohup bash bench_fast.sh default > log/cache_dit_bench_fast.log 2>&1 &
-export CUDA_VISIBLE_DEVICES=1 && nohup bash bench_fast.sh taylorseer > log/cache_dit_bench_taylorseer_fast.log 2>&1 &
+export CUDA_VISIBLE_DEVICES=0
+nohup bash bench_fast.sh default > log/cache_dit_bench_fast.log 2>&1 &
+export CUDA_VISIBLE_DEVICES=1
+nohup bash bench_fast.sh taylorseer > log/cache_dit_bench_taylorseer_fast.log 2>&1 &
 bash ./metrics_fast.sh
 
 # Qwen-Image-Lightning DrawBench
-export CUDA_VISIBLE_DEVICES=0,1 && nohup bash bench_distill.sh 8_steps > log/cache_dit_bench_distill_8_steps.log 2>&1 &
-export CUDA_VISIBLE_DEVICES=2,3 && nohup bash bench_distill.sh 4_steps > log/cache_dit_bench_distill_4_steps.log 2>&1 &
+export CUDA_VISIBLE_DEVICES=0,1
+nohup bash bench_distill.sh 8_steps > log/cache_dit_bench_distill_8_steps.log 2>&1 &
+export CUDA_VISIBLE_DEVICES=2,3
+nohup bash bench_distill.sh 4_steps > log/cache_dit_bench_distill_4_steps.log 2>&1 &
 bash ./metrics_distill.sh
 ```

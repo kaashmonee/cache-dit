@@ -1,132 +1,4 @@
-<div align="center">
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/cache-dit-logo.png height="120">
-
-<p align="center">
-    A <b>Unified</b>, Flexible and Training-free <b>Cache Acceleration</b> Framework for <b>🤗Diffusers</b> <br>
-    ♥️ Cache Acceleration with <b>One-line</b> Code ~ ♥️
-  </p>
-  <div align='center'>
-      <img src=https://img.shields.io/badge/Language-Python-brightgreen.svg >
-      <img src=https://img.shields.io/badge/PRs-welcome-9cf.svg >
-      <img src=https://img.shields.io/badge/PyPI-pass-brightgreen.svg >
-      <img src=https://static.pepy.tech/badge/cache-dit >
-      <img src=https://img.shields.io/github/stars/vipshop/cache-dit.svg?style=dark >
-      <img src=https://img.shields.io/badge/Python-3.10|3.11|3.12-9cf.svg >
- </div>
-  <p align="center">
-    <b><a href="#unified">📚Unified Cache APIs</a></b> | <a href="#forward-pattern-matching">📚Forward Pattern Matching</a> | <a href="#automatic-block-adapter">📚Automatic Block Adapter</a><br>
-    <a href="#hybird-forward-pattern">📚Hybrid Forward Pattern</a> | <a href="#dbcache">📚DBCache</a> | <a href="#taylorseer">📚TaylorSeer Calibrator</a> | <a href="#cfg">📚Cache CFG</a><br>
-    <a href="#benchmarks">📚Text2Image DrawBench</a> | <a href="#benchmarks">📚Text2Image Distillation DrawBench</a>
-  </p>
-  <p align="center">
-    🎉Now, <b>cache-dit</b> covers almost <b>All</b> Diffusers' <b>DiT</b> Pipelines🎉<br>
-    🔥<a href="#supported">Qwen-Image</a> | <a href="#supported">FLUX.1</a> | <a href="#supported">Qwen-Image-Lightning</a> | <a href="#supported"> Wan 2.1 </a> | <a href="#supported"> Wan 2.2 </a>🔥<br>
-    🔥<a href="#supported">HunyuanImage-2.1</a> | <a href="#supported">HunyuanVideo</a> | <a href="#supported">HunyuanDiT</a> | <a href="#supported">HiDream</a> | <a href="#supported">AuraFlow</a>🔥<br>
-    🔥<a href="#supported">CogView3Plus</a> | <a href="#supported">CogView4</a> | <a href="#supported">LTXVideo</a> | <a href="#supported">CogVideoX</a> | <a href="#supported">CogVideoX 1.5</a> | <a href="#supported">ConsisID</a>🔥<br>
-    🔥<a href="#supported">Cosmos</a> | <a href="#supported">SkyReelsV2</a> | <a href="#supported">VisualCloze</a> | <a href="#supported">OmniGen 1/2</a> | <a href="#supported">Lumina 1/2</a> | <a href="#supported">PixArt</a>🔥<br>
-    🔥<a href="#supported">Chroma</a> | <a href="#supported">Sana</a> | <a href="#supported">Allegro</a> | <a href="#supported">Mochi</a> | <a href="#supported">SD 3/3.5</a> | <a href="#supported">Amused</a> | <a href="#supported"> ... </a> | <a href="#supported">DiT-XL</a>🔥
-  </p>
-</div>
-
-
-<div align='center'>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/gifs/wan2.2.C0_Q0_NONE.gif width=124px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/gifs/wan2.2.C1_Q0_DBCACHE_F1B0_W2M8MC2_T1O2_R0.08.gif width=124px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/gifs/hunyuan_video.C0_L0_Q0_NONE.gif width=126px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/gifs/hunyuan_video.C0_L0_Q0_DBCACHE_F1B0_W8M0MC2_T0O2_R0.12_S27.gif width=126px>
-  <p><b>🔥Wan2.2 MoE</b> | <a href="https://github.com/vipshop/cache-dit">+cache-dit</a>:2.0x↑🎉 | <b>HunyuanVideo</b> | <a href="https://github.com/vipshop/cache-dit">+cache-dit</a>:2.1x↑🎉</p>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/qwen-image.C0_Q0_NONE.png width=160px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/qwen-image.C1_Q0_DBCACHE_F8B0_W8M0MC0_T1O4_R0.12_S23.png width=160px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/flux.C0_Q0_NONE_T23.69s.png width=90px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/flux.C0_Q0_DBCACHE_F1B0_W4M0MC0_T1O2_R0.15_S16_T11.39s.png width=90px>
-  <p><b>🔥Qwen-Image</b> | <a href="https://github.com/vipshop/cache-dit">+cache-dit</a>:1.8x↑🎉 | <b>FLUX.1-dev</b> | <a href="https://github.com/vipshop/cache-dit">+cache-dit</a>:2.1x↑🎉</p>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/qwen-image-lightning.4steps.C0_L1_Q0_NONE.png width=160px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/qwen-image-lightning.4steps.C0_L1_Q0_DBCACHE_F16B16_W2M1MC1_T0O2_R0.9_S1.png width=160px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/hunyuan-image-2.1.C0_L0_Q1_fp8_w8a16_wo_NONE.png width=90px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/hunyuan-image-2.1.C0_L0_Q1_fp8_w8a16_wo_DBCACHE_F8B0_W8M0MC2_T1O2_R0.12_S25.png width=90px>
-  <p><b>🔥Qwen...Lightning</b> | <a href="https://github.com/vipshop/cache-dit">+cache-dit</a>:1.14x↑🎉 | <b>HunyuanImage</b> | <a href="https://github.com/vipshop/cache-dit">+cache-dit</a>:1.7x↑🎉</p>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/examples/data/bear.png width=125px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/qwen-image-edit.C0_L0_Q0_NONE.png width=125px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/qwen-image-edit.C0_L0_Q0_DBCACHE_F8B0_W8M0MC0_T0O2_R0.08_S18.png width=125px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/qwen-image-edit.C0_L0_Q0_DBCACHE_F1B0_W8M0MC2_T0O2_R0.12_S24.png width=125px>
-  <p><b>🔥Qwen-Image-Edit</b> | Input w/o Edit | Baseline | <a href="https://github.com/vipshop/cache-dit">+cache-dit</a>:1.6x↑🎉 | 1.9x↑🎉 
-  <br>♥️ Please consider to leave a <b>⭐️ Star</b> to support us ~ ♥️
-  </p>
-</div>
-
-<details align='center'>
-
-<summary>Click here to show Image/Video cases</summary>
-
-<div  align='center'>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/flux-kontext-cat.C0_L0_Q0_NONE.png width=100px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/flux-kontext.C0_L0_Q0_NONE.png width=100px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/flux-kontext.C0_L0_Q0_DBCACHE_F8B0_W8M0MC0_T0O2_R0.08_S10.png width=100px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/flux-kontext.C0_L0_Q0_DBCACHE_F1B0_W8M0MC2_T0O2_R0.12_S12.png width=100px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/flux-kontext.C0_L0_Q0_DBCACHE_F1B0_W2M0MC2_T0O2_R0.15_S15.png width=100px>
-  <p><b>🔥FLUX-Kontext-dev</b> | Baseline | <a href="https://github.com/vipshop/cache-dit">+cache-dit</a>:1.3x↑🎉 | 1.7x↑🎉 | 2.0x↑ 🎉</p>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/hidream.C0_L0_Q0_NONE.png width=100px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/hidream.C0_L0_Q0_DBCACHE_F1B0_W8M0MC0_T0O2_R0.08_S24.png width=100px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/cogview4.C0_L0_Q0_NONE.png width=100px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/cogview4.C0_L0_Q0_DBCACHE_F8B0_W8M0MC0_T0O2_R0.08_S15.png width=100px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/cogview4.C0_L0_Q0_DBCACHE_F1B0_W4M0MC4_T0O2_R0.2_S22.png width=100px>
-  <p><b>🔥HiDream-I1</b> | <a href="https://github.com/vipshop/cache-dit">+cache-dit</a>:1.9x↑🎉 | <b>CogView4</b> | <a href="https://github.com/vipshop/cache-dit">+cache-dit</a>:1.4x↑🎉 | 1.7x↑🎉</p>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/cogview3_plus.C0_L0_Q0_NONE.png width=100px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/cogview3_plus.C0_L0_Q0_DBCACHE_F8B0_W8M0MC0_T0O2_R0.08_S15.png width=100px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/cogview3_plus.C0_L0_Q0_DBCACHE_F1B0_W8M0MC2_T0O2_R0.08_S25.png width=100px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/chroma1-hd.C0_L0_Q0_NONE.png width=100px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/chroma1-hd.C0_L0_Q0_DBCACHE_F1B0_W8M0MC0_T0O2_R0.08_S20.png width=100px>
-  <p><b>🔥CogView3</b> | <a href="https://github.com/vipshop/cache-dit">+cache-dit</a>:1.5x↑🎉 | 2.0x↑🎉| <b>Chroma1-HD</b> | <a href="https://github.com/vipshop/cache-dit">+cache-dit</a>:1.9x↑🎉</p>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/gifs/mochi.C0_L0_Q0_NONE.gif width=125px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/gifs/mochi.C0_L0_Q0_DBCACHE_F8B0_W8M0MC0_T0O2_R0.08_S34.gif width=125px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/gifs/skyreels_v2.C0_L0_Q0_NONE.gif width=125px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/gifs/skyreels_v2.C0_L0_Q0_DBCACHE_F8B0_W8M0MC0_T0O2_R0.12_S17.gif width=125px>
-  <p><b>🔥Mochi-1-preview</b> | <a href="https://github.com/vipshop/cache-dit">+cache-dit</a>:1.8x↑🎉 | <b>SkyReelsV2</b> | <a href="https://github.com/vipshop/cache-dit">+cache-dit</a>:1.6x↑🎉</p>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/examples/data/visualcloze/00555_00.jpg width=100px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/examples/data/visualcloze/12265_00.jpg width=100px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/visualcloze-512.C0_L0_Q0_NONE.png width=100px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/visualcloze-512.C0_L0_Q0_DBCACHE_F8B0_W8M0MC0_T0O2_R0.08_S15.png width=100px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/visualcloze-512.C0_L0_Q0_DBCACHE_F1B0_W8M0MC0_T0O2_R0.08_S18.png width=100px>
-  <p><b>🔥VisualCloze-512</b> | Model | Cloth | Baseline | <a href="https://github.com/vipshop/cache-dit">+cache-dit</a>:1.4x↑🎉 | 1.7x↑🎉 </p>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/gifs/ltx-video.C0_L0_Q0_NONE.gif width=144px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/gifs/ltx-video.C0_L0_Q0_DBCACHE_F1B0_W8M0MC0_T0O2_R0.15_S13.gif width=144px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/gifs/cogvideox1.5.C0_L0_Q0_NONE.gif width=105px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/gifs/cogvideox1.5.C0_L0_Q0_DBCACHE_F1B0_W8M0MC0_T0O2_R0.12_S22.gif width=105px>
-  <p><b>🔥LTX-Video-0.9.7</b> | <a href="https://github.com/vipshop/cache-dit">+cache-dit</a>:1.7x↑🎉 | <b>CogVideoX1.5</b> | <a href="https://github.com/vipshop/cache-dit">+cache-dit</a>:2.0x↑🎉</p>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/omingen-v1.C0_L0_Q0_NONE.png width=100px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/omingen-v1.C0_L0_Q0_DBCACHE_F8B0_W8M0MC0_T0O2_R0.08_S24.png width=100px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/omingen-v1.C0_L0_Q0_DBCACHE_F1B0_W8M0MC0_T1O2_R0.08_S38.png width=100px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/lumina2.C0_L0_Q0_NONE.png width=100px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/lumina2.C0_L0_Q0_DBCACHE_F1B0_W2M0MC2_T0O2_R0.12_S14.png width=100px>
-  <p><b>🔥OmniGen-v1</b> | <a href="https://github.com/vipshop/cache-dit">+cache-dit</a>:1.5x↑🎉 | 3.3x↑🎉 | <b>Lumina2</b> | <a href="https://github.com/vipshop/cache-dit">+cache-dit</a>:1.9x↑🎉</p>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/gifs/allegro.C0_L0_Q0_NONE.gif width=117px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/gifs/allegro.C0_L0_Q0_DBCACHE_F8B0_W8M0MC0_T0O2_R0.26_S27.gif width=117px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/auraflow.C0_L0_Q0_NONE.png width=133px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/auraflow.C0_L0_Q0_DBCACHE_F1B0_W8M0MC2_T0O2_R0.08_S28.png width=133px>
-  <p><b>🔥Allegro</b> | <a href="https://github.com/vipshop/cache-dit">+cache-dit</a>:1.36x↑🎉 | <b>AuraFlow-v0.3</b> | <a href="https://github.com/vipshop/cache-dit">+cache-dit</a>:2.27x↑🎉 </p>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/sana.C0_L0_Q0_NONE.png width=100px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/sana.C0_L0_Q0_DBCACHE_F8B0_W8M0MC2_T0O2_R0.25_S6.png width=100px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/sana.C0_L0_Q0_DBCACHE_F1B0_W8M0MC2_T0O2_R0.3_S8.png width=100px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/pixart-sigma.C0_L0_Q0_NONE.png width=100px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/pixart-sigma.C0_L0_Q0_DBCACHE_F8B0_W8M0MC0_T0O2_R0.08_S28.png width=100px>
-  <p><b>🔥Sana</b> | <a href="https://github.com/vipshop/cache-dit">+cache-dit</a>:1.3x↑🎉 | 1.6x↑🎉| <b>PixArt-Sigma</b> | <a href="https://github.com/vipshop/cache-dit">+cache-dit</a>:2.3x↑🎉</p>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/pixart-alpha.C0_L0_Q0_NONE.png width=100px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/pixart-alpha.C0_L0_Q0_DBCACHE_F8B0_W8M0MC0_T0O2_R0.05_S27.png width=100px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/pixart-alpha.C0_L0_Q0_DBCACHE_F8B0_W8M0MC0_T0O2_R0.08_S32.png width=100px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/sd_3_5.C0_L0_Q0_NONE.png width=100px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/sd_3_5.C0_L0_Q0_DBCACHE_F1B0_W8M0MC3_T0O2_R0.12_S30.png width=100px>
-  <p><b>🔥PixArt-Alpha</b> | <a href="https://github.com/vipshop/cache-dit">+cache-dit</a>:1.6x↑🎉 | 1.8x↑🎉| <b>SD 3.5</b> | <a href="https://github.com/vipshop/cache-dit">+cache-dit</a>:2.5x↑🎉</p>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/amused.C0_L0_Q0_NONE.png width=100px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/amused.C0_L0_Q0_DBCACHE_F8B0_W8M0MC0_T0O2_R0.34_S1.png width=100px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/amused.C0_L0_Q0_DBCACHE_F8B0_W8M0MC0_T0O2_R0.38_S2.png width=100px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/dit-xl.C0_L0_Q0_NONE.png width=100px>
-  <img src=https://github.com/vipshop/cache-dit/raw/main/assets/dit-xl.C0_L0_Q0_DBCACHE_F1B0_W8M0MC2_T0O2_R0.15_S11.png width=100px>
-  <p><b>🔥Asumed</b> | <a href="https://github.com/vipshop/cache-dit">+cache-dit</a>:1.1x↑🎉 | 1.2x↑🎉 | <b>DiT-XL-256</b> | <a href="https://github.com/vipshop/cache-dit">+cache-dit</a>:1.8x↑🎉
-  <br>♥️ Please consider to leave a <b>⭐️ Star</b> to support us ~ ♥️</p>
-</div>
-</details>
-
-## 📖Contents 
+## 📖User Guide
 
 <div id="contents"></div>  
 
@@ -143,8 +15,8 @@
 - [⚡️Dual Block Cache](#dbcache)
 - [🔥TaylorSeer Calibrator](#taylorseer)
 - [⚡️Hybrid Cache CFG](#cfg)
-- [⚙️Torch Compile](#compile)
 - [🛠Metrics CLI](#metrics)
+- [⚙️Torch Compile](#compile)
 - [📚API Documents](#api-docs)
 
 ## ⚙️Installation  
@@ -237,7 +109,13 @@ Comparisons between different FnBn compute block configurations show that **more
 | F4B0_W4MC3_R0.12 | 32.8981 | 1.0130 | 31.8031 | 1507.83 | 2.47x |
 | F4B0_W4MC4_R0.12 | 32.8384 | 1.0065 | 31.5292 | 1400.08 | 2.66x |
 
-The comparison between **cache-dit: DBCache** and algorithms such as Δ-DiT, Chipmunk, FORA, DuCa, TaylorSeer and FoCa is as follows. Now, in the comparison with a speedup ratio less than **3x**, cache-dit achieved the best accuracy. Please check [📚How to Reproduce?](https://github.com/vipshop/cache-dit/raw/main/bench/) for more details.
+### 📚Compare with Other Methods: Δ-DiT, Chipmunk, FORA, DuCa, TaylorSeer and FoCa
+
+![image-reward-bench](https://github.com/vipshop/cache-dit/raw/main/assets/image-reward-bench.png)
+
+![clip-score-bench](https://github.com/vipshop/cache-dit/raw/main/assets/clip-score-bench.png)
+
+The comparison between **cache-dit: DBCache** and algorithms such as Δ-DiT, Chipmunk, FORA, DuCa, TaylorSeer and FoCa is as follows. Now, in the comparison with a speedup ratio less than **3x**, cache-dit achieved the best accuracy. Surprisingly, cache-dit: DBCache still works in the extremely few-step distill model. For a complete benchmark, please refer to [📚Benchmarks](https://github.com/vipshop/cache-dit/raw/main/bench/). 
 
 | Method | TFLOPs(↓) | SpeedUp(↑) | ImageReward(↑) | Clip Score(↑) |
 | --- | --- | --- | --- | --- |
@@ -309,7 +187,6 @@ Surprisingly, cache-dit: DBCache still works in the extremely few-step distill m
 | F1B0_W2MC1_R0.8            | 31.8317   | 35.6651    | 1.2397       | 206.90   | 1.33x       |
 
 ## 🎉Unified Cache APIs
-
 
 <div id="unified"></div>  
 
@@ -610,27 +487,6 @@ cache_dit.enable_cache(
 )
 ```
 
-## ⚙️Torch Compile
-
-<div id="compile"></div>  
-
-By the way, **cache-dit** is designed to work compatibly with **torch.compile.** You can easily use cache-dit with torch.compile to further achieve a better performance. For example:
-
-```python
-cache_dit.enable_cache(pipe)
-
-# Compile the Transformer module
-pipe.transformer = torch.compile(pipe.transformer)
-```
-However, users intending to use **cache-dit** for DiT with **dynamic input shapes** should consider increasing the **recompile** **limit** of `torch._dynamo`. Otherwise, the recompile_limit error may be triggered, causing the module to fall back to eager mode. 
-```python
-torch._dynamo.config.recompile_limit = 96  # default is 8
-torch._dynamo.config.accumulated_recompile_limit = 2048  # default is 256
-```
-
-Please check [perf.py](https://github.com/vipshop/cache-dit/blob/main/bench/perf.py) for more details.
-
-
 ## 🛠Metrics CLI
 
 <div id="metrics"></div>    
@@ -663,79 +519,52 @@ cache-dit-metrics-cli all  -i1 true.png -i2 test.png  # image
 cache-dit-metrics-cli all  -i1 true_dir -i2 test_dir  # image dir
 ```
 
-### 📚API Documentation
+## ⚙️Torch Compile
+
+<div id="compile"></div>  
+
+By the way, **cache-dit** is designed to work compatibly with **torch.compile.** You can easily use cache-dit with torch.compile to further achieve a better performance. For example:
+
+```python
+cache_dit.enable_cache(pipe)
+
+# Compile the Transformer module
+pipe.transformer = torch.compile(pipe.transformer)
+```
+However, users intending to use **cache-dit** for DiT with **dynamic input shapes** should consider increasing the **recompile** **limit** of `torch._dynamo`. Otherwise, the recompile_limit error may be triggered, causing the module to fall back to eager mode. 
+```python
+torch._dynamo.config.recompile_limit = 96  # default is 8
+torch._dynamo.config.accumulated_recompile_limit = 2048  # default is 256
+```
+
+Please check [perf.py](https://github.com/vipshop/cache-dit/blob/main/bench/perf.py) for more details.
+
+---
+
+## 📚API Documentation
 
 <div id="api-docs"></div>  
 
-Unified Cache API for almost Any Diffusion Transformers (with Transformer Blocks that match the specific Input and Output patterns). For a good balance between performance and precision, DBCache is configured by default with F8B0, 8 warmup steps, and unlimited cached steps. All the configurable params are listed beflows:
+Unified Cache API for almost Any Diffusion Transformers (with Transformer Blocks that match the specific Input and Output patterns). For a good balance between performance and precision, DBCache is configured by default with F8B0, 8 warmup steps, and unlimited cached steps. All the configurable params are listed beflows.
+
+### 👏API: enable_cache
 
 ```python
-def enable_cache(...) -> Union[
-    DiffusionPipeline,
-    BlockAdapter,
-]:
-    r"""
-    Unified Cache API for  almost Any Diffusion Transformers (with Transformer Blocks
-    that match the specific Input and Output patterns).
-
-    For a good balance between performance and precision, DBCache is configured by default
-    with F8B0, 8 warmup steps, and unlimited cached steps.
-
-    Args:
-        pipe_or_adapter (`DiffusionPipeline` or `BlockAdapter`, *required*):
-            The standard Diffusion Pipeline or custom BlockAdapter (from cache-dit or user-defined).
-            For example: cache_dit.enable_cache(FluxPipeline(...)). Please check https://github.com/vipshop/cache-dit/blob/main/docs/BlockAdapter.md
-            for the usgae of BlockAdapter.
-        cache_config (`BasicCacheConfig`, *required*, defaults to BasicCacheConfig()):
-            Basic DBCache config for cache context, defaults to BasicCacheConfig(). The configurable params listed belows:
-                Fn_compute_blocks: (`int`, *required*, defaults to 8):
-                    Specifies that `DBCache` uses the **first n** Transformer blocks to fit the information
-                    at time step t, enabling the calculation of a more stable L1 diff and delivering more
-                    accurate information to subsequent blocks. Please check https://github.com/vipshop/cache-dit/blob/main/docs/DBCache.md
-                    for more details of DBCache.
-                Bn_compute_blocks: (`int`, *required*, defaults to 0):
-                    Further fuses approximate information in the **last n** Transformer blocks to enhance
-                    prediction accuracy. These blocks act as an auto-scaler for approximate hidden states
-                    that use residual cache.
-                residual_diff_threshold (`float`, *required*, defaults to 0.08):
-                    the value of residual diff threshold, a higher value leads to faster performance at the
-                    cost of lower precision.
-                max_warmup_steps (`int`, *required*, defaults to 8):
-                    DBCache does not apply the caching strategy when the number of running steps is less than
-                    or equal to this value, ensuring the model sufficiently learns basic features during warmup.
-                max_cached_steps (`int`, *required*, defaults to -1):
-                    DBCache disables the caching strategy when the previous cached steps exceed this value to
-                    prevent precision degradation.
-                max_continuous_cached_steps (`int`, *required*, defaults to -1):
-                    DBCache disables the caching strategy when the previous continous cached steps exceed this value to
-                    prevent precision degradation.
-                enable_separate_cfg (`bool`, *required*,  defaults to None):
-                    Whether to do separate cfg or not, such as Wan 2.1, Qwen-Image. For model that fused CFG
-                    and non-CFG into single forward step, should set enable_separate_cfg as False, for example:
-                    CogVideoX, HunyuanVideo, Mochi, etc.
-                cfg_compute_first (`bool`, *required*,  defaults to False):
-                    Compute cfg forward first or not, default False, namely, 0, 2, 4, ..., -> non-CFG step;
-                    1, 3, 5, ... -> CFG step.
-                cfg_diff_compute_separate (`bool`, *required*,  defaults to True):
-                    Compute separate diff values for CFG and non-CFG step, default True. If False, we will
-                    use the computed diff from current non-CFG transformer step for current CFG step.
-        calibrator_config (`CalibratorConfig`, *optional*, defaults to None):
-            Config for calibrator, if calibrator_config is not None, means that user want to use DBCache
-            with specific calibrator, such as taylorseer, foca, and so on.
-        params_modifiers ('ParamsModifier', *optional*, defaults to None):
-            Modify cache context params for specific blocks. The configurable params listed belows:
-                cache_config (`BasicCacheConfig`, *required*, defaults to BasicCacheConfig()):
-                    The same as 'cache_config' param in cache_dit.enable_cache() interface.
-                calibrator_config (`CalibratorConfig`, *optional*, defaults to None):
-                    The same as 'calibrator_config' param in cache_dit.enable_cache() interface.
-                **kwargs: (`dict`, *optional*, defaults to {}):
-                    The same as 'kwargs' param in cache_dit.enable_cache() interface.
-        kwargs (`dict`, *optional*, defaults to {})
-            Other cache context kwargs, please check https://github.com/vipshop/cache-dit/blob/main/src/cache_dit/cache_factory/cache_contexts/cache_context.py
-            for more details.
+def enable_cache(...) -> Union[DiffusionPipeline, BlockAdapter]
 ```
 
-Examples:
+### 🌟Function Description
+
+The `enable_cache` function serves as a unified caching interface designed to optimize the performance of diffusion transformer models by implementing an intelligent caching mechanism known as `DBCache`. This API is engineered to be compatible with nearly `all` diffusion transformer architectures that feature transformer blocks adhering to standard input-output patterns, eliminating the need for architecture-specific modifications.  
+
+By strategically caching intermediate outputs of transformer blocks during the diffusion process, `DBCache` significantly reduces redundant computations without compromising generation quality. The caching mechanism works by tracking residual differences between consecutive steps, allowing the model to reuse previously computed features when these differences fall below a configurable threshold. This approach maintains a balance between computational efficiency and output precision.  
+
+The default configuration (`F8B0, 8 warmup steps, unlimited cached steps`) is carefully tuned to provide an optimal tradeoff for most common use cases. The "F8B0" configuration indicates that the first 8 transformer blocks are used to compute stable feature differences, while no final blocks are employed for additional fusion. The warmup phase ensures the model establishes sufficient feature representation before caching begins, preventing potential degradation of output quality.  
+
+This function seamlessly integrates with both standard diffusion pipelines and custom block adapters, making it versatile for various deployment scenarios—from research prototyping to production environments where inference speed is critical. By abstracting the complexity of caching logic behind a simple interface, it enables developers to enhance model performance with minimal code changes.
+
+### 👇Quick Start
+
 ```python
 >>> import cache_dit
 >>> from diffusers import DiffusionPipeline
@@ -745,3 +574,49 @@ Examples:
 >>> stats = cache_dit.summary(pipe) # Then, get the summary of cache acceleration stats.
 >>> cache_dit.disable_cache(pipe) # Disable cache and run original pipe.
 ```
+
+### 👇Parameter Description
+
+- **pipe_or_adapter**(`DiffusionPipeline` or `BlockAdapter`, *required*):
+  The standard Diffusion Pipeline or custom BlockAdapter (from cache-dit or user-defined).
+  For example: `cache_dit.enable_cache(FluxPipeline(...))`.
+  Please check https://github.com/vipshop/cache-dit/blob/main/docs/User_Guide.md for the usage of BlockAdapter.
+
+- **cache_config**(`BasicCacheConfig`, *required*, defaults to BasicCacheConfig()):
+  Basic DBCache config for cache context, defaults to BasicCacheConfig(). The configurable parameters are listed below:
+  - `Fn_compute_blocks`: (`int`, *required*, defaults to 8):
+    Specifies that `DBCache` uses the**first n**Transformer blocks to fit the information at time step t, enabling the calculation of a more stable L1 difference and delivering more accurate information to subsequent blocks.
+    Please check https://github.com/vipshop/cache-dit/blob/main/docs/DBCache.md for more details of DBCache.
+  - `Bn_compute_blocks`: (`int`, *required*, defaults to 0):
+    Further fuses approximate information in the**last n**Transformer blocks to enhance prediction accuracy. These blocks act as an auto-scaler for approximate hidden states that use residual cache.
+  - `residual_diff_threshold`: (`float`, *required*, defaults to 0.08):
+    The value of residual difference threshold, a higher value leads to faster performance at the cost of lower precision.
+  - `max_warmup_steps`: (`int`, *required*, defaults to 8):
+    DBCache does not apply the caching strategy when the number of running steps is less than or equal to this value, ensuring the model sufficiently learns basic features during warmup.
+  - `max_cached_steps`: (`int`, *required*, defaults to -1):
+    DBCache disables the caching strategy when the previous cached steps exceed this value to prevent precision degradation.
+  - `max_continuous_cached_steps`: (`int`, *required*, defaults to -1):
+    DBCache disables the caching strategy when the previous continuous cached steps exceed this value to prevent precision degradation.
+  - `enable_separate_cfg`: (`bool`, *required*, defaults to None):
+    Whether to use separate cfg or not, such as in Wan 2.1, Qwen-Image. For models that fuse CFG and non-CFG into a single forward step, set enable_separate_cfg as False. Examples include: CogVideoX, HunyuanVideo, Mochi, etc.
+  - `cfg_compute_first`: (`bool`, *required*, defaults to False):
+    Whether to compute cfg forward first, default is False, meaning:
+    0, 2, 4, ... -> non-CFG step;
+    1, 3, 5, ... -> CFG step.
+  - `cfg_diff_compute_separate`: (`bool`, *required*, defaults to True):
+    Whether to compute separate difference values for CFG and non-CFG steps, default is True. If False, we will use the computed difference from the current non-CFG transformer step for the current CFG step.
+
+- **calibrator_config** (`CalibratorConfig`, *optional*, defaults to None):
+  Config for calibrator. If calibrator_config is not None, it means the user wants to use DBCache with a specific calibrator, such as taylorseer, foca, and so on.
+
+- **params_modifiers** ('ParamsModifier', *optional*, defaults to None):
+  Modify cache context parameters for specific blocks. The configurable parameters are listed below:
+  - `cache_config`: (`BasicCacheConfig`, *required*, defaults to BasicCacheConfig()):
+    The same as the 'cache_config' parameter in the cache_dit.enable_cache() interface.
+  - `calibrator_config`: (`CalibratorConfig`, *optional*, defaults to None):
+    The same as the 'calibrator_config' parameter in the cache_dit.enable_cache() interface.
+  - `**kwargs`: (`dict`, *optional*, defaults to {}):
+    The same as the 'kwargs' parameter in the cache_dit.enable_cache() interface.
+
+- **kwargs** (`dict`, *optional*, defaults to {}):
+  Other cache context keyword arguments. Please check https://github.com/vipshop/cache-dit/blob/main/src/cache_dit/cache_factory/cache_contexts/cache_context.py for more details.
